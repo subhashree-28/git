@@ -1,0 +1,20 @@
+.dropdownOption {
+    /* border: solid; */
+    padding: 10px;
+    text-align: center;
+    position: absolute;
+    cursor: pointer;
+    margin-left: 100px;
+    height: 200px;
+    width: 300px;
+  }
+  
+.body {
+  border: groove;
+  border-radius: 8px;
+}
+
+.header {
+  border: groove;
+  border-radius: 8px;
+}

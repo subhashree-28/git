@@ -1,0 +1,28 @@
+.App {
+    text-align: center;
+    font-size: 2rem;
+    padding: 15px 32px;
+  }
+  
+  .minusButton {
+    margin-right: 20%;
+    background-color: #c0c0c0;
+    border: none;
+    cursor: pointer;
+  }
+  
+  .plusButton {
+    background-color: #00ff00;
+    border: none;
+    cursor: pointer;
+  }
+  
+  .resetButton {
+    cursor: pointer;
+  }
+  
+  .disabled {
+    opacity: 0.6;
+    cursor: not-allowed;
+  }
+  

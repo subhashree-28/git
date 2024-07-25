@@ -1,0 +1,31 @@
+.selectitem {
+    border: groove;
+    margin-left: 555px;
+     margin-right: 555px; 
+    height: 85px;
+    overflow: auto;
+    padding-right: 50px ;
+    text-align: left;
+}
+
+searchbar {
+    width: 100%;
+    padding: 8px;
+    margin-bottom: 10px;
+    box-sizing: border-box;
+  }
+
+.Itemsadd {
+    border: groove;
+}
+
+.itemsingrocery {
+    text-align: center;
+}
+
+.multipleoption {
+    
+    align-items: center;
+    cursor: pointer;
+  }
+  
