@@ -1,16 +1,18 @@
 import React, { useState } from "react";
 import "./multipleSection.css";
+import _ from "lodash";
 
 interface Props {
   items: {
-    id: number;
+    id?: number;
     label: string;
     value: string;
   }[];
+  defaultValue: string,
 }
 
 function Checklist(props: Props) {
-  const { items } = props;
+  const { items, defaultValue } = props;
 
   const [selectedItem, setSelectedItem] = useState<string[]>([]);
   const [open,setOpen] = useState(false);
@@ -18,65 +20,62 @@ function Checklist(props: Props) {
 
   const handleClick = (item: string) => {
     setSelectedItem((prev) => {
-      if (prev.includes(item)) {
-        return prev.filter((i) => i !== item);
+      if (_.includes(prev, item)) {
+        return _.filter(prev, (i) => i !== item);
       } else {
         return [...prev, item];
       }
     });
   };
- 
+
+  const selectItem = _.join(selectedItem, ", ");
+  const SelectingItem = `${defaultValue}, ${selectItem}`;
+
+  const filteredItems = _.filter(items, (item) => 
+    _.includes(_.toLower(item.value),_.toLower(search))
+    
+  );
+
   const SelectAll = () => {
-    if (selectedItem.length > 0) {
+    if (_.size(selectedItem) > 0) {
       setSelectedItem([]);
     }
     else {
-      setSelectedItem(items.map((item) => item.label));
+      setSelectedItem(items.map((item) => item.value));
     }
-  
-  
-
-    const allSelected = filteredItems.every((item) =>
-      selectedItem.includes(item.label)
-    );
-
   };
 
-  const combinedItem = selectedItem.join(", ");
-
-  const filteredItems = items.filter((item) =>
-    item.label.includes(search)
-  );
-
   return (
-    <div className="itemsingrocery">
-      <h1>Grocery Item</h1>
+    <div className="multiselectoption">
+      <h1 className="header">Grocery Item</h1>
 
-      <div className="AddingItem" onClick={() => setOpen(!open)}>
-         <input type="text" value={combinedItem}
-         className="Itemsadd"/>
-      </div>
-       
+       <div className="show-options" onClick={() => setOpen(!open)}>
+         <input type="text" value={SelectingItem}
+         className="selecting-options"/>
+      </div> 
+      
      {open &&  
-     <div className="selectitem" >
+     <div className="select--item" >
         <input type="Search" value={search}
         onChange={(e) => setSearch(e.target.value)}
         defaultValue="Search" 
         className="searchbar"/>
         <br />
         <label>
-          <input type="checkbox" onChange={SelectAll}/>
+          <input type="checkbox" checked={selectedItem.length === items.length} onChange={SelectAll}/>
           Select All
         </label>
         <br />
         {filteredItems.map((item) => (
           <>
-            <label className="multipleoption">
+            <label className="multiple--option">
             <input type="checkbox" 
-            checked={selectedItem.includes(item.label)}
-            onChange={()=>handleClick(item.label)} 
+            checked={selectedItem.includes(item.value) || defaultValue.includes(item.value)}
+            onChange={()=>handleClick(item.value) 
+            
+            }
             />
-            {item.label}
+            {item.value}
             <br />
             </label>
           </>

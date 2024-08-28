@@ -2,13 +2,18 @@ import React, { useState } from "react";
 import "./dropdown.css";
 
 interface Props {
-  options: string[];
+  options: {
+    label: string,
+    value: string,
+  }[];
+  defaultValue: string; 
+  onSubmit: (opt: string) => void;  
 }
 
 function Dropdown(props: Props) {
-  const { options } = props;
+  const { options, defaultValue, onSubmit } = props;
   const [option, setOption] = useState(false);
-  const [select, setSelect] = useState("Favourite");
+  const [select, setSelect] = useState(defaultValue);
   const showOptions = () => {
     setOption(!option);
   };
@@ -21,14 +26,15 @@ function Dropdown(props: Props) {
       {option && (
         <div className="body">
           {options.map((option, index) => (
-            <div
+            <div className="eachbody"
               key={index}
               onClick={() => {
-                setSelect(option);
+                setSelect(option.value);
                 setOption(false);
+                onSubmit(option.value)
               }}
             >
-              {option}
+              {option.value}
             </div>
           ))}
         </div>

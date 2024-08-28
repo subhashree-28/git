@@ -1,7 +1,11 @@
 import Accordion from "./components/Accordion/Accordion";
-import Dropdown from "./components/Dropdown/Dropdown";
-import Counter from "./components/Counter/Counter";
 import Checklist from "./components/MultipleSelection/MultipleSection";
+import Counter from "./components/Counter/Counter";
+import Dropdown from "./components/Dropdown/Dropdown";
+import Dataset from "./components/Dataset/Dataset";
+import Counters from "./components/UserRef Counter/UserRef Counter";
+import MyApp from "./components/Theme/Theme";
+import Form from "./components/Increment/Increment"
 
 const data = [
   {
@@ -23,7 +27,13 @@ const data = [
   },
 ];
 
-const options = ["chappathi", "Poori", "Briyani"];
+const options = [
+  {label: "Chappathi", value: "chappathi"},
+  {label: "Poori", value: "poori"},
+  {label: "Dosa", value: "dosa"},
+  {label:"Parotta", value: "parotta"},
+  {label: "Chilly", value: "chilly"},
+];
 
 const items = [
   {
@@ -53,6 +63,15 @@ const items = [
   },
 ];
 
+
+
+// const arrayofvalue = [[1,2,3],[4,5,6],[7,8,9]];
+// const arrayofvalue = [
+//   [' ', ' ', ' '],
+//   [' ', ' ', ' '],
+//   [' ', ' ', ' '],
+// ];
+
 function App() {
   return (
     <div>
@@ -61,16 +80,30 @@ function App() {
       ))}
       <br />
 
-      <Dropdown options={options} />
+      <Dropdown options={options} defaultValue="favourite" onSubmit={function (opt: string): void {
+        throw new Error("Function not implemented.");
+      }}  />
       <br />
 
-      <Counter />
-      <br />
+      {/* <Counter />
+      <br /> */}
 
-      <Checklist items={items} />
+      <Checklist items={items} defaultValue={""} />
+      <br />
+      <br />
+      <br />
+      {/* <Square arrayofvalue={arrayofvalue}/>
+      <Board /> */}
+      {/* <Dataset />
+
+      <Counters /> */}
+
+      <MyApp />
+      <Form />
     </div>
   );
 }
 
 export default App;
+
 
